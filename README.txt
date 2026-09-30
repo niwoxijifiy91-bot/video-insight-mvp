@@ -1,9 +1,11 @@
-视频洞察 MVP（Windows 网页版）
+抖音视频解析工具（Windows 网页版）
 
 使用方法：
 1. 双击“VideoInsightMVP.exe”。
 2. 程序会在后台启动本地服务，并自动打开浏览器。
 3. 首次使用，点击右上角“接口设置”，填写火山方舟 API Key、模型 ID 和 TikHub API Key。
+火山方舟我用的 seed 2.1 lite 完全够用 API Key 获取网址：https://exp.volcengine.com/ark/gen_chat?model=doubao-seed-2-1-lite-260915
+TikHub API Key 获取网址：https://tikhub.io/zh
 4. 粘贴抖音作品链接，点击“开始分析”。
 
 数据保存位置：
