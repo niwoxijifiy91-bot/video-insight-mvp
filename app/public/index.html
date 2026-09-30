@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>视频洞察 MVP</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">VI</span><div><strong>视频洞察</strong><small>Douyin intelligence MVP</small></div></div>
+      <div class="top-actions"><span id="providerStatus" class="status-pill muted">检查配置中</span><button id="settingsButton" class="ghost-button" type="button">接口设置</button></div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div><p class="eyebrow">VIDEO INSIGHT MVP</p><h1>把一个抖音视频，拆成可用的内容与需求证据</h1><p class="intro-copy">输入作品链接，系统临时获取视频直链交给豆包理解，同时采集 TikHub 返回的公开评论，最后把视频事实、评论主题和普遍需求放在同一份结果里。</p></div>
+        <div class="flow"><span>作品链接</span><i></i><span>视频理解</span><i></i><span>评论需求</span></div>
+      </section>
+
+      <section class="workspace">
+        <aside class="input-panel panel">
+          <div class="panel-heading"><div><p class="eyebrow">START HERE</p><h2>分析一个作品</h2></div><span class="step-number">01</span></div>
+          <div id="setupNotice" class="setup-notice"><div><strong>先配置两个接口</strong><p>豆包负责视频与评论需求分析，TikHub 负责获取作品和评论。</p></div><button id="setupNoticeButton" class="plain-link" type="button">去填写</button></div>
+          <form id="analysisForm">
+            <label for="videoUrl">抖音视频链接</label>
+            <input id="videoUrl" name="videoUrl" placeholder="粘贴 https://www.douyin.com/video/..." autocomplete="off" required />
+            <p class="field-hint">支持作品详情页链接和抖音分享短链接。不会下载或保存视频文件。</p>
+            <label for="commentsLimit">评论采集上限</label>
+            <select id="commentsLimit"><option value="20">20 条，快速预览</option><option value="50" selected>50 条，完整 MVP 分析</option></select>
+            <button id="analyzeButton" class="primary-button" type="submit">开始分析 <span>→</span></button>
+          </form>
+          <div class="pipeline" id="pipeline"><div class="pipeline-item active"><b>1</b><span><strong>解析作品</strong><small>识别作品 ID并取得临时视频地址</small></span></div><div class="pipeline-item"><b>2</b><span><strong>理解视频</strong><small>画面、口播、字幕、结构与商业信号</small></span></div><div class="pipeline-item"><b>3</b><span><strong>归纳评论</strong><small>重复问题、痛点与高价值需求</small></span></div></div>
+          <div class="privacy-note"><strong>数据边界</strong><p>视频只在分析请求期间通过临时直链读取，MVP 不落盘视频；结果和接口配置保存在本机 `.data` 目录。</p></div>
+        </aside>
+
+        <section class="result-area" id="resultArea">
+          <div class="empty-state" id="emptyState"><div class="empty-kicker">RESULTS</div><h2>等待一个作品</h2><p>分析完成后，这里会先呈现视频真实讲了什么，再呈现评论区共同关心什么。</p><div class="empty-grid"><span>视频内容事实</span><span>内容结构与知识点</span><span>评论普遍需求</span></div></div>
+          <div id="loadingState" class="loading-state hidden"><div class="loader"></div><p id="loadingMessage">任务准备中</p><small>视频理解通常需要几十秒，页面会自动更新</small></div>
+          <div id="resultContent" class="hidden"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="settingsDialog" class="settings-dialog">
+    <form id="settingsForm" method="dialog">
+      <div class="dialog-heading"><div><p class="eyebrow">LOCAL CONFIGURATION</p><h2>接口设置</h2></div><button id="closeSettings" class="icon-button" type="button" aria-label="关闭">×</button></div>
+      <p class="dialog-copy">密钥只保存在本机，不会发送到本 MVP 以外的服务。火山方舟模型用于视频理解和评论需求总结，TikHub 用于获取作品详情与公开评论。</p>
+      <label for="arkApiKey">火山方舟 API Key</label><input id="arkApiKey" type="password" placeholder="首次填写，之后可留空" autocomplete="off" />
+      <label for="modelId">模型 ID</label><input id="modelId" placeholder="例如 doubao-seed-2-0-lite-260428" autocomplete="off" />
+      <label for="endpoint">火山方舟 Responses 地址</label><input id="endpoint" placeholder="https://ark.cn-beijing.volces.com/api/v3/responses" autocomplete="off" />
+      <label for="tikhubApiKey">TikHub API Key</label><input id="tikhubApiKey" type="password" placeholder="首次填写，之后可留空" autocomplete="off" />
+      <label for="tikhubBaseUrl">TikHub API 地址</label><input id="tikhubBaseUrl" placeholder="https://api.tikhub.io" autocomplete="off" />
+      <div class="settings-foot"><label for="commentsLimitSetting">默认评论上限</label><select id="commentsLimitSetting"><option value="20">20 条</option><option value="50">50 条</option></select><button class="primary-button compact" type="submit">保存设置</button></div>
+      <p id="settingsMessage" class="form-message"></p>
+    </form>
+  </dialog>
+  <script src="/app.js"></script>
+</body>
+</html>
