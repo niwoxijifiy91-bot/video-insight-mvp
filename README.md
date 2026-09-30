@@ -34,8 +34,8 @@
 ## 🚀 快速开始
 
 1. 双击 `VideoInsightMVP.exe`（Windows）。
-2. 首次使用，点击右上角「接口设置」，填写 **火山方舟 API Key、模型 ID 与 TikHub API Key**。
-   火山方舟我用的 seed 2.1 lite 完全够用 API Key [获取网址](https://exp.volcengine.com/ark/gen_chat?model=doubao-seed-2-1-lite-260915)
+2. 首次使用，点击右上角「接口设置」，填写 **火山方舟 API Key、模型 ID 与 TikHub API Key**。  
+   火山方舟我用的 seed 2.1 lite 完全够用 API Key [获取网址](https://exp.volcengine.com/ark/gen_chat?model=doubao-seed-2-1-lite-260915)  
    TikHub API Key [获取网址](https://tikhub.io/zh)
 4. 粘贴抖音作品链接，点击「开始分析」。
 
